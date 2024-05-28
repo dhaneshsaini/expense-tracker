@@ -1,9 +1,10 @@
 import { Outlet, Route, Routes, useLocation } from "react-router-dom"
+import { useEffect } from "react"
 import Home from "./pages/Home"
 import Entries from "./pages/Entries"
-import AddItem from "./pages/AddItem"
+import AddItem from "./pages/Add"
+import EditItem from "./pages/Edit"
 import { AnimatePresence } from "framer-motion"
-import { useEffect } from "react"
 
 export default function App() {
   const location = useLocation()
@@ -14,7 +15,8 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="entries" element={<Entries />} />
-          <Route path="additem" element={<AddItem />} />
+          <Route path="add" element={<AddItem />} />
+          <Route path="edit/:id" element={<EditItem />} />
         </Route>
       </Routes>
     </AnimatePresence>

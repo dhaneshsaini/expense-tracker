@@ -1,8 +1,9 @@
-import React, { createContext, useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
+import MyContext from './Context.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,15 +14,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>,
 )
-
-export const Context = createContext()
-
-function MyContext({ children }) {
-  const [selectedOption, setSelectedOption] = useState('Day')
-
-  return (
-    <Context.Provider value={{ selectedOption, setSelectedOption }}>
-      {children}
-    </Context.Provider>
-  )
-}

@@ -1,13 +1,13 @@
 import { FaAngleLeft } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import CardItem from "../components/CardItem"
-import filterItemsByGranularity, { expenseList } from "../components/filterFn"
+import filterItemsByGranularity from "../components/functions"
 import { motion } from "framer-motion"
-import { Context } from "../main"
+import { Context } from "../Context"
 import { useContext } from "react"
 
 export default function Entries() {
-    const { selectedOption } = useContext(Context)
+    const { expenseList, selectedOption } = useContext(Context)
 
     return (
         <motion.section
