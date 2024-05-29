@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import Selector from "../components/Selector"
 import CardItem from "../components/CardItem"
 import { motion } from "framer-motion"
-import filterItemsByGranularity, { getGreeting, totalSpending, totalSpendingByCategory } from "../components/functions"
+import filterItemsByGranularity, { getGreeting, rearrangeByDate, totalSpending, totalSpendingByCategory } from "../components/functions"
 import { useContext } from "react"
 import { Context } from "../Context"
 
@@ -36,24 +36,28 @@ export default function Home() {
         }
     ]
 
+    function handleSelectOption(e) {
+        setSelectedOption(e)
+        localStorage.setItem('selectedTimeOption', e)
+    }
+
     return (
         <>
             <motion.section
                 initial={{ y: "100vh", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                exit={{ y: "100vh", opacity: 0 }}
-                className="min-h-screen">
+                exit={{ y: "100vh", opacity: 0 }}>
                 <div className="pt-8 pb-5">
                     <h1 className="font-semibold text-2xl leading-loose">Good {getGreeting()}</h1>
                 </div>
 
-                <div className="flex items-center p-5 rounded-xl bg-gradient-to-b from-[#ef5d4b] to-[#ef8c33] drop-shadow-xl">
+                <div className="flex text-slate-50 items-center p-5 rounded-xl bg-gradient-to-b from-[#ef5d4b] to-[#ef8c33] drop-shadow-xl">
                     <div className="flex-1">
                         <span className="font-medium">Total Expenses</span>
                         <h2 className="text-4xl leading-relaxed font-semibold">$ {totalSpending(filterItemsByGranularity(expenseList, selectedOption)) || 0}</h2>
                     </div>
                     <div className="flex-1 grid place-items-center">
-                        <Selector options={options} onChange={e => setSelectedOption(e)} />
+                        <Selector className="drop-shadow-md bg-white/20" options={options} onChange={handleSelectOption} optionFromLocalStorage={selectedOption} />
                     </div>
                 </div>
 
@@ -63,8 +67,8 @@ export default function Home() {
                     </div>
                     <div className="grid gap-5 grid-cols-2">
                         {categories.map((item, i) => (
-                            <div key={i} className="bg-gradient-to-tl from-[#555963] to-[#40444f] rounded-xl p-5">
-                                <div className="bg-gradient-to-br from-[#555963] to-[#40444f] inline-flex p-2 rounded-lg">
+                            <div key={i} className="bg-gradient-to-tl dark:from-[#555963] dark:to-[#40444f] rounded-xl p-5  bg-slate-100">
+                                <div className="bg-gradient-to-br dark:from-[#555963] dark:to-[#40444f] inline-flex p-2 rounded-lg bg-slate-200">
                                     <item.icon fontSize={24} color={item.iconColor} />
                                 </div>
                                 <h3 className="font-semibold text-lg leading-loose">{item.name}</h3>
@@ -80,16 +84,19 @@ export default function Home() {
                         <Link className="font-medium" to="/entries">View All</Link>
                     </div>
                     <div className="grid gap-5 mt-5">
-                        {filterItemsByGranularity(expenseList, selectedOption).slice(0, 3).map((e, i) => (
+                        {rearrangeByDate(filterItemsByGranularity(expenseList, selectedOption)).slice(0, 2).map((e, i) => (
                             <CardItem key={i} item={e} />
                         ))}
                     </div>
                 </div>
-
-                <div className="p-4 border-t border-gray-600 sticky top-full left-0 w-full bg-[#303642]">
-                    <Link to="/add" className="p-4 drop-shadow-lg inline-block rounded-full text-center w-full bg-gradient-to-b from-[#d6406b] to-[#eb6482] font-semibold">Add Expense</Link>
-                </div>
             </motion.section>
+            <motion.div
+                initial={{ y: "100vh", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: "100vh", opacity: 0 }}
+                className="sticky left-0 bottom-0 max-w-md mx-auto w-full p-4 border-t bg-white border-slate-200 dark:border-slate-600 dark:bg-[#303642]">
+                <Link to="/add" className="p-4 drop-shadow-lg inline-block rounded-full text-center w-full bg-gradient-to-b text-white from-[#d6406b] to-[#eb6482] font-semibold">Add Expense</Link>
+            </motion.div>
         </>
     )
 }

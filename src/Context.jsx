@@ -3,7 +3,7 @@ import { useState, createContext } from "react"
 export const Context = createContext()
 
 export default function MyContext({ children }) {
-    const [selectedOption, setSelectedOption] = useState('Day')
+    const [selectedOption, setSelectedOption] = useState(localStorage.getItem('selectedTimeOption') || "Day")
     const [expenseList, setExpenseList] = useState(JSON.parse(localStorage.getItem('expenses')) || [])
 
     return (

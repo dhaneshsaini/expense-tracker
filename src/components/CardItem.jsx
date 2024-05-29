@@ -20,7 +20,7 @@ export default function CardItem({ item }) {
     return (
         <div {...handlers} ref={refPassthrough} className="flex justify-between items-center">
             <div className="flex-1 flex items-center gap-5">
-                <div className="bg-gradient-to-br from-[#555963] to-[#40444f] inline-flex p-3 rounded-lg">
+                <div className="bg-gradient-to-br bg-slate-200 dark:from-[#555963] dark:to-[#40444f] inline-flex p-3 rounded-lg">
                     {item.category.toLowerCase() === "shopping" ? (<RiShoppingBag4Line fontSize={28} color="#c06376" />) : item.category.toLowerCase() === "food" ? (<TbBowlSpoon fontSize={28} color="#53c0b4" />) : item.category.toLowerCase() === "medical" ? (<FaStethoscope fontSize={28} color="#6e689c" />) : <RiMoneyDollarCircleLine fontSize={28} color="#be8e83" />}
                 </div>
                 <div>

@@ -92,3 +92,8 @@ export function getGreeting() {
         return "Night"
     }
 }
+
+export function rearrangeByDate(arr) {
+    arr.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return arr
+}

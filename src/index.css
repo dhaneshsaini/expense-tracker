@@ -3,7 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
     ::-webkit-calendar-picker-indicator {
-        @apply invert
+        @apply dark:invert
     }
 }

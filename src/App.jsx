@@ -28,7 +28,7 @@ function Layout() {
   useEffect(() => window.scrollTo(0, 0), [pathname])
 
   return (
-    <main className="max-w-md min-h-screen px-5 mx-auto bg-[#303642] text-gray-50">
+    <main className="max-w-md min-h-screen px-5 mx-auto text-slate-900 dark:bg-[#303642] dark:text-slate-50">
       <Outlet />
     </main>
   )

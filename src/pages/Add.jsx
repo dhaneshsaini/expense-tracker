@@ -60,7 +60,7 @@ export default function AddItem() {
             exit={{ y: "100%", opacity: 0 }}>
             <div className="">
                 <Link to="/" className="flex pt-5 justify-end">
-                    <RxCross2 className="bg-white/10 rounded-full p-1" fontSize={32} />
+                    <RxCross2 className="bg-slate-800/20 dark:bg-white/10 rounded-full p-1" fontSize={32} />
                 </Link>
             </div>
             <ItemForm
