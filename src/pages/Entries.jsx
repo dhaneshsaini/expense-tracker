@@ -1,14 +1,9 @@
 import { FaAngleLeft } from "react-icons/fa"
 import { Link } from "react-router-dom"
-import CardItem from "../components/CardItem"
-import filterItemsByGranularity, { rearrangeByDate } from "../components/functions"
 import { motion } from "framer-motion"
-import { Context } from "../Context"
-import { useContext } from "react"
+import ItemsList from "../components/List"
 
 export default function Entries() {
-    const { expenseList, selectedOption } = useContext(Context)
-
     return (
         <motion.section
             initial={{ y: "100vh", opacity: 0 }}
@@ -21,12 +16,7 @@ export default function Entries() {
                 </Link>
                 <h2 className="col-span-2 font-semibold text-lg">Latest Entries</h2>
             </div>
-
-            <div className="grid gap-5 mt-5">
-                {rearrangeByDate(filterItemsByGranularity(expenseList, selectedOption)).map((e, i) => (
-                    <CardItem key={i} item={e} />
-                ))}
-            </div>
+            <ItemsList />
         </motion.section>
     )
 }

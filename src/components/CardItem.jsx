@@ -10,8 +10,7 @@ export default function CardItem({ item }) {
     // setup ref for your usage
     const myRef = useRef()
 
-    const refPassthrough = (el) => {
-        // call useSwipeable ref prop with el
+    function refPassthrough(el) {
         handlers.ref(el)
         // set myRef el so you can access it yourself
         myRef.current = el

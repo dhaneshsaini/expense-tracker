@@ -7,7 +7,7 @@ import { Context } from "../Context"
 
 export default function AddItem() {
     const navigate = useNavigate()
-    const { setExpenseList } = useContext(Context)
+    const { expenseList, setExpenseList } = useContext(Context)
     const [dateToday, setDateToday] = useState('')
     const options = ['Medical', 'Food', 'Shopping', 'Other']
 
@@ -21,13 +21,12 @@ export default function AddItem() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-
         const today = new Date().toISOString().split('T')[0]
         setDateToday(today)
         setNewItem(prevState => ({ ...prevState, date: today }))
     }, [])
 
-    useEffect(() => setExpenseList(JSON.parse(localStorage.getItem('expenses'))), [newItem])
+    useEffect(() => setExpenseList(JSON.parse(localStorage.getItem('expenses')) || []), [newItem])
 
     function handleAddNewItem(e) {
         e.preventDefault()
@@ -57,7 +56,8 @@ export default function AddItem() {
         <motion.section
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
-            exit={{ y: "100%", opacity: 0 }}>
+            exit={{ y: "100%", opacity: 0 }}
+        >
             <div className="">
                 <Link to="/" className="flex pt-5 justify-end">
                     <RxCross2 className="bg-slate-800/20 dark:bg-white/10 rounded-full p-1" fontSize={32} />
