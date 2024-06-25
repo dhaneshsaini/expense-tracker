@@ -1,1 +1,1 @@
-{"name":"expense-tracker","short_name":"expense-tracker","start_url":"/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/"}
+{"name":"expense-tracker","short_name":"expense-tracker","start_url":"/expense-tracker/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/expense-tracker/"}
